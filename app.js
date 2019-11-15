@@ -31,8 +31,6 @@ function getBookmarks() {
     chrome.bookmarks.getTree(
         (source) => {
             try {
-                
-
                 loopBookmarkFolders(source);
             } catch (e) {
                 print(e);
@@ -52,7 +50,9 @@ function addOpenLinkEvent() {
     document.querySelectorAll('.item-text').forEach(item => {
         item.addEventListener('click', () => {
             try {
-                chrome.windows.create({ "url": item.getAttribute("data-url"), "incognito": true });
+                chrome.windows.getCurrent(function(w) {
+                    chrome.tabs.create({ "url": item.getAttribute("data-url")});
+                });
             } catch (e) {
                 print(e);
             }

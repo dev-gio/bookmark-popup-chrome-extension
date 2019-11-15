@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Handle Bookmarks",
   "permissions": [
-    "bookmarks"
+    "bookmarks", "tabs"
   ],
   "browser_action": {
       "default_title": "My Bookmarks",
