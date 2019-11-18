@@ -38,6 +38,7 @@ body {
   font-weight: 600;
   margin: 5px 0;
   border-bottom: 1px solid #f68c29;
+  -webkit-user-select: none;
 }
 
 
