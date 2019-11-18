@@ -32,10 +32,18 @@ body {
 }
 
 .folder-title {
-  padding: 10px 5px 0px;
+  padding: 10px 5px;
   font-size: 18px;
-  color: #f68c29;
+  color: white;
   font-weight: 600;
+  background: #f68c29;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.folder-title:hover {
+  background: #ffffff;
+  color: #f68c29;
 }
 
 hr {
@@ -47,7 +55,9 @@ hr {
 }
 
 ::-webkit-scrollbar {
+  display: none;
   background-color: rgba(246, 139, 40, 0.1);
+
 }
 ::-webkit-scrollbar-thumb {
   background-color: #f68c29;
@@ -61,4 +71,29 @@ hr {
   border: none;
   padding: 5px;
   border-radius: 5px;
+}
+
+.collapsible {
+  cursor: pointer;
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.collapsible:after {
+  content: '+';
+  font-size: 13px;
+  color: #f68c29;
+  float: right;
+  margin-right: 10px;
+  font-weight: bolder;
+  text-align: center;
+  line-height: 18px;
+}
+
+.active:after {
+  content: "-";
 }

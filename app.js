@@ -1,4 +1,4 @@
-var list = '';
+var list = '<div>';
 const loopBookmarkFolders = (obj) => {
     obj.forEach(item => {
         splitBookmarks(item);
@@ -16,7 +16,7 @@ const splitBookmarks = (item) => {
     }
 
     if (item.children && item.children.length > 0) {
-        list += (item.title) ? `<div class="folder-title">${item.title.toUpperCase()}</div><hr>` : '';
+        list += (item.title) ? `</div><div class="folder-title collapsible">${item.title.toUpperCase()}</div><div class="content">` : '';
 
         loopBookmarkFolders(item.children);
     } else {
@@ -24,6 +24,7 @@ const splitBookmarks = (item) => {
         document.querySelector('#bookmark-wrap').innerHTML = list;
         addOpenLinkEvent();
         addDeleteEvent();
+        addCollapsible();
     }
 }
 
@@ -64,6 +65,33 @@ function deleteBookmark(id, el) {
     chrome.bookmarks.remove(String(id));
     el.parentNode.remove();
 
+}
+
+function addCollapsible() {
+    let topic = document.querySelectorAll('.collapsible');
+    Array.from(topic).forEach(eachTopic => {
+        eachTopic.addEventListener('click', function(event) {
+            eachTopic.classList.toggle("active");
+            let content = eachTopic.nextElementSibling;
+            if (content.style.maxHeight){
+              content.style.maxHeight = null;
+            } else {
+              content.style.maxHeight = content.scrollHeight + "px";
+            } 
+        });
+
+        let bookmarkCategory = eachTopic.innerHTML;
+        if(bookmarkCategory == 'BOOKMARKS BAR' || bookmarkCategory == 'MOST USED') {
+            if (!eachTopic.classList.contains("active")) {
+                eachTopic.classList.toggle("active");
+                if (eachTopic.nextElementSibling.style.maxHeight){
+                    eachTopic.nextElementSibling.style.maxHeight = null;
+                } else {
+                    eachTopic.nextElementSibling.style.maxHeight = eachTopic.nextElementSibling.scrollHeight +10 + "px";
+                }
+            }
+        }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
