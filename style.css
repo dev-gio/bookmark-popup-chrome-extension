@@ -34,17 +34,12 @@ body {
 .folder-title {
   padding: 10px 5px;
   font-size: 18px;
-  color: white;
+  color: #f68c29;
   font-weight: 600;
-  background: #f68c29;
-  border-radius: 5px;
   margin: 5px 0;
+  border-bottom: 1px solid #f68c29;
 }
 
-.folder-title:hover {
-  background: #ffffff;
-  color: #f68c29;
-}
 
 hr {
   border-top: 1px solid #f68c29;
